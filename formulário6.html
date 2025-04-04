@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulário de Matrícula</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f7f7;
+    }
+    .container {
+      max-width: 800px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      width: 100%;
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    legend {
+      font-weight: bold;
+      padding: 0 10px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .required {
+      color: red;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .grid {
+      display: grid;
+      gap: 15px;
+    }
+    /* Classes para layout de colunas conforme necessário */
+    .two-columns { grid-template-columns: 1fr 1fr; }
+    .three-columns { grid-template-columns: 1fr 1fr 1fr; }
+    .inline-group {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Formulário Requermimento para  Matrícula  no CEEJA de Lins</h1>
+    <!-- Substitua SEU_WEBHOOK_N8N pela URL do seu webhook -->
+    <form action="SEU_WEBHOOK_N8N" method="POST" enctype="multipart/form-data">
+      
+      <!-- Dados Pessoais -->
+      <fieldset>
+        <legend>Dados Pessoais</legend>
+        
+        <div class="form-group">
+          <label>Nome Completo <span class="required">*</span></label>
+          <input type="text" name="nome" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Nome Social</label>
+          <input type="text" name="nome_social">
+        </div>
+        
+        <div class="grid two-columns">
+          <div class="form-group">
+            <label>Sexo</label>
+            <select name="sexo">
+              <option value="">Selecione</option>
+              <option>Masculino</option>
+              <option>Feminino</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>RG <span class="required">*</span></label>
+            <input type="text" name="rg" required>
+          </div>
+        </div>
+        
+        <div class="grid two-columns">
+          <div class="form-group">
+            <label>Data de emissão <span class="required">*</span></label>
+            <input type="date" name="data_emissao" required>
+          </div>
+          <div class="form-group">
+            <label>Estado de emissão do RG <span class="required">*</span></label>
+            <input type="text" name="estado_emissao" required>
+          </div>
+        </div>
+        
+        <div class="grid two-columns">
+          <div class="form-group">
+            <label>CPF <span class="required">*</span></label>
+            <input type="text" name="cpf" required>
+          </div>
+          <div class="form-group">
+            <label>E-mail <span class="required">*</span></label>
+            <input type="email" name="email" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Telefone <span class="required">*</span></label>
+          <input type="tel" name="telefone" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Estado Civil</label>
+          <input type="text" name="estado_civil">
+        </div>
+        
+        <div class="form-group">
+          <label>Nome da mãe <span class="required">*</span></label>
+          <input type="text" name="nome_mae" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Gêmeo?</label>
+          <div class="inline-group">
+            <input type="radio" name="gemeo" value="Sim" id="gemeoSim">
+            <label for="gemeoSim">Sim</label>
+          </div>
+          <div class="inline-group">
+            <input type="radio" name="gemeo" value="Não" id="gemeoNao" checked>
+            <label for="gemeoNao">Não</label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Cor/Raça</label>
+          <select name="cor">
+            <option value="">Selecione</option>
+            <option>Branco</option>
+            <option>Preto</option>
+            <option>Pardo</option>
+            <option>Amarelo</option>
+            <option>Indígena</option>
+            <option>Quilombola</option>
+            <option>Não Declarada</option>
+          </select>
+        </div>
+        
+        <div class="grid two-columns">
+          <div class="form-group">
+            <label>Data de nascimento <span class="required">*</span></label>
+            <input type="date" id="data_nascimento" name="data_nascimento" required>
+          </div>
+          <div class="form-group">
+            <label>Idade</label>
+            <input type="text" id="idade" name="idade" readonly>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Nacionalidade <span class="required">*</span></label>
+          <div class="inline-group">
+            <input type="radio" name="nacionalidade" value="Brasileiro" id="nacionalidadeBrasileiro" required>
+            <label for="nacionalidadeBrasileiro">Brasileiro</label>
+          </div>
+          <div class="inline-group">
+            <input type="radio" name="nacionalidade" value="Estrangeiro" id="nacionalidadeEstrangeiro">
+            <label for="nacionalidadeEstrangeiro">Estrangeiro</label>
+          </div>
+        </div>
+        
+        <!-- Campo condicional para nacionalidade -->
+        <div class="form-group" id="campoNacionalidade" style="display: none;">
+          <label id="labelNacionalidade"></label>
+          <input type="text" name="localidade">
+        </div>
+        
+        <div class="form-group">
+          <label>Município de Nascimento <span class="required">*</span></label>
+          <input type="text" name="municipio_nascimento" required>
+        </div>
+        
+        <!-- Campo para selfie -->
+        <div class="form-group">
+          <label>Foto de Rosto (Selfie)</label>
+          <input type="file" name="selfie" accept="image/*" capture="user">
+        </div>
+      </fieldset>
+      
+      <!-- Endereço -->
+      <fieldset>
+        <legend>Endereço</legend>
+        <div class="form-group">
+          <label>CEP <span class="required">*</span></label>
+          <input type="text" name="cep" placeholder="Digite o CEP">
+        </div>
+        <div class="form-group">
+          <label>Rua</label>
+          <input type="text" name="rua">
+        </div>
+        <div class="grid two-columns">
+          <div class="form-group">
+            <label>Número</label>
+            <input type="text" name="numero">
+          </div>
+          <div class="form-group">
+            <label>Complemento</label>
+            <input type="text" name="complemento">
+          </div>
+        </div>
+        <div class="grid three-columns">
+          <div class="form-group">
+            <label>Bairro</label>
+            <input type="text" name="bairro">
+          </div>
+          <div class="form-group">
+            <label>Cidade</label>
+            <input type="text" name="cidade">
+          </div>
+          <div class="form-group">
+            <label>Estado</label>
+            <input type="text" name="estado">
+          </div>
+        </div>
+      </fieldset>
+      
+      <!-- Dados Acadêmicos -->
+      <fieldset>
+        <legend>Dados Acadêmicos</legend>
+        <div class="form-group">
+          <label>Requer matrícula no: <span class="required">*</span></label>
+          <select name="serie_requerida" required onchange="toggleItinerario(this.value)">
+            <option value="">Selecione</option>
+            <option value="Fundamental">Ensino Fundamental</option>
+            <option value="Medio">Ensino Médio</option>
+          </select>
+        </div>
+        <!-- Itinerário: só aparece se Ensino Médio for selecionado -->
+        <div class="form-group hidden" id="itinerarioGroup">
+          <label>Se Ensino Médio, escolha o itinerário:</label>
+          <select name="itinerario">
+            <option value="">Selecione</option>
+            <option>Ciências Humanas com Linguagens</option>
+            <option>Ciências da Natureza com Matemática</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Já estudou no CEEJA?</label>
+          <div class="inline-group">
+            <input type="radio" name="ceeja" value="Sim" id="ceejaSim">
+            <label for="ceejaSim">Sim</label>
+          </div>
+          <div class="inline-group">
+            <input type="radio" name="ceeja" value="Não" id="ceejaNao" checked>
+            <label for="ceejaNao">Não</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Fez ENEM, Encceja, Telecurso ou Eliminou Matérias?</label>
+          <div class="inline-group">
+            <input type="checkbox" id="check_eliminou">
+            <label for="check_eliminou">Sim</label>
+          </div>
+          <div id="disciplinas" class="hidden">
+            <label>Disciplinas Eliminadas:</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="disciplinas[]" value="Português"> Língua Portuguesa</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Arte"> Arte</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Inglês"> Inglês</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Matemática"> Matemática</label>
+              <label><input type="checkbox" name="disciplinas[]" value="História"> História</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Geografia"> Geografia</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Sociologia"> Sociologia</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Filosofia"> Filosofia</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Física"> Física</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Química"> Química</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Biologia"> Biologia</label>
+              <label><input type="checkbox" name="disciplinas[]" value="Ciências"> Ciências</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Possui DP?</label>
+          <div class="inline-group">
+            <input type="radio" name="dp" value="Sim" id="dpSim" onchange="toggleDP(true)">
+            <label for="dpSim">Sim</label>
+          </div>
+          <div class="inline-group">
+            <input type="radio" name="dp" value="Não" id="dpNao" checked onchange="toggleDP(false)">
+            <label for="dpNao">Não</label>
+          </div>
+        </div>
+        <!-- Se DP for Sim, seleção de séries com DP -->
+        <div class="form-group hidden" id="dpSeriesGroup">
+          <label>Em qual(is) série(s) você possui DP? (Selecione uma ou mais)</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="dp_series[]" value="8ª"> 8ª</label>
+            <label><input type="checkbox" name="dp_series[]" value="1º Ensino Médio"> 1º Ensino Médio</label>
+            <label><input type="checkbox" name="dp_series[]" value="2º Ensino Médio"> 2º Ensino Médio</label>
+            <label><input type="checkbox" name="dp_series[]" value="3º Ensino Médio"> 3º Ensino Médio</label>
+          </div>
+        </div>
+        <!-- Container para as disciplinas de DP -->
+        <div id="dpDisciplinasContainer" class="hidden"></div>
+        
+        <div class="form-group">
+          <label>Última série concluída:</label>
+          <select name="outros_graus">
+            <option value="">Selecione</option>
+            <option>4ª série</option>
+            <option>5ª série</option>
+            <option>6ª série</option>
+            <option>7ª série</option>
+            <option>8ª série</option>
+            <option>1º Ensino Médio</option>
+            <option>2º Ensino Médio</option>
+            <option>3º Ensino Médio</option>
+          </select>
+        </div>
+        <!-- Campo Educação Física -->
+        <div class="form-group">
+          <label>Educação Física?</label>
+          <div class="inline-group">
+            <input type="radio" name="educacao_fisica" value="Sim" id="fisicaSim" onchange="toggleEducacaoFisica(true)">
+            <label for="fisicaSim">Sim</label>
+          </div>
+          <div class="inline-group">
+            <input type="radio" name="educacao_fisica" value="Não" id="fisicaNao" checked onchange="toggleEducacaoFisica(false)">
+            <label for="fisicaNao">Não</label>
+          </div>
+          <div id="mensagem_fisica" class="hidden" style="margin-top:10px; font-size: 0.9em; color: #555;">
+            A Educação Física no CEEJA é facultativa, caso as aulas ocorram, serão aos sábados se e somente se alcançado o número mínimo de alunos necessários para formar uma turma e disponiblidadede professor. Caso não concorde, clique em não.
+          </div>
+        </div>
+      </fieldset>
+      
+      <!-- Documentos (opcional) -->
+      <fieldset>
+        <legend>Documentos (opcional)</legend>
+        <div class="form-group">
+          <label>RG</label>
+          <input type="file" name="doc_rg" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>CPF</label>
+          <input type="file" name="doc_cpf" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Certidão de Nascimento</label>
+          <input type="file" name="doc_certidao" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Comprovante de Residência</label>
+          <input type="file" name="doc_comprovante" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Histórico Escolar - Ensino Fundamental</label>
+          <input type="file" name="doc_historico_fundamental" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Histórico Escolar - Ensino Médio</label>
+          <input type="file" name="doc_historico_medio" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Declaração de Escolaridade ou Transferência</label>
+          <input type="file" name="doc_declaracao" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Título de Eleitor</label>
+          <input type="file" name="doc_titulo_eleitor" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Reservista (para homens)</label>
+          <input type="file" name="doc_reservista" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Atestado de Eliminação (ENCCEJA, etc.)</label>
+          <input type="file" name="doc_atestado" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <div class="form-group">
+          <label>Carteira de Vacinação ou Comprovante de Dose contra COVID-19</label>
+          <input type="file" name="doc_vacinacao" accept=".pdf,.png,.jpg,.jpeg">
+        </div>
+        <!-- Registro do Requerimento -->
+        <fieldset>
+          <legend>Registro do Requerimento da Matrícula</legend>
+          <div class="form-group">
+            <label>Local do Registro</label>
+            <input type="text" name="local_registro" id="local_registro" value="Lins-SP" readonly>
+          </div>
+          <div class="form-group">
+            <label>Data do Registro</label>
+            <input type="text" name="data_registro" id="data_registro" readonly>
+          </div>
+        </fieldset>
+      </fieldset>
+      
+      <!-- Autodeclaração -->
+      <fieldset>
+        <legend>Autodeclaração</legend>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="autodeclaracao" required>
+            Declaro que terei condições de comparecer às orientações e avaliações. Declaro ciência de que terei minha matrícula cancelada caso não tenha pelo menos 1 (um) comparecimento por mês e que devo efetuar minha rematrícula a cada ano.
+          </label>
+        </div>
+      </fieldset>
+      
+      <button type="submit">Enviar Matrícula</button>
+    </form>
+  </div>
+  
+  <script>
+    // Calcular a idade automaticamente
+    document.getElementById('data_nascimento').addEventListener('change', function () {
+      const nascimento = new Date(this.value);
+      const hoje = new Date();
+      let idade = hoje.getFullYear() - nascimento.getFullYear();
+      const m = hoje.getMonth() - nascimento.getMonth();
+      if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+        idade--;
+      }
+      document.getElementById('idade').value = idade;
+    });
+    
+    // Toggle do itinerário: exibe se "Ensino Médio" for selecionado
+    function toggleItinerario(value) {
+      const itinerarioGroup = document.getElementById('itinerarioGroup');
+      if (value === 'Medio') {
+        itinerarioGroup.classList.remove('hidden');
+      } else {
+        itinerarioGroup.classList.add('hidden');
+      }
+    }
+    
+    // Toggle para exibir as disciplinas eliminadas
+    document.getElementById("check_eliminou")?.addEventListener('change', function() {
+      const disciplinasDiv = document.getElementById("disciplinas");
+      disciplinasDiv.classList.toggle("hidden", !this.checked);
+    });
+    
+    // Toggle para exibir a seção de DP
+    function toggleDP(isDP) {
+      const dpSeriesGroup = document.getElementById('dpSeriesGroup');
+      const dpDisciplinasContainer = document.getElementById('dpDisciplinasContainer');
+      if (isDP) {
+        dpSeriesGroup.classList.remove('hidden');
+        dpDisciplinasContainer.classList.remove('hidden');
+      } else {
+        dpSeriesGroup.classList.add('hidden');
+        dpDisciplinasContainer.innerHTML = '';
+        dpDisciplinasContainer.classList.add('hidden');
+      }
+    }
+    
+    // Atualiza as disciplinas de DP dinamicamente conforme as séries selecionadas
+    function updateDPDisciplinas() {
+      const container = document.getElementById("dpDisciplinasContainer");
+      container.innerHTML = "";
+      const dpSeries = document.querySelectorAll("input[name='dp_series[]']:checked");
+      if(dpSeries.length > 0) {
+        dpSeries.forEach(cb => {
+          const series = cb.value;
+          const div = document.createElement("div");
+          div.className = "form-group";
+          const label = document.createElement("label");
+          label.textContent = "Disciplinas Reprovadas (DP) para " + series + ":";
+          div.appendChild(label);
+          const checkboxGroup = document.createElement("div");
+          checkboxGroup.className = "checkbox-group";
+          const subjects = ["Língua Portuguesa", "Arte", "Inglês", "Matemática", "História", "Geografia", "Sociologia", "Filosofia", "Física", "Química", "Biologia", "Ciências"];
+          subjects.forEach(subject => {
+            const subLabel = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = "dp_disciplinas_" + series + "[]";
+            input.value = subject;
+            subLabel.appendChild(input);
+            subLabel.appendChild(document.createTextNode(" " + subject));
+            checkboxGroup.appendChild(subLabel);
+          });
+          div.appendChild(checkboxGroup);
+          container.appendChild(div);
+        });
+      } else {
+        container.classList.add("hidden");
+      }
+    }
+    
+    // Adiciona event listener aos checkboxes de DP Series
+    document.querySelectorAll("input[name='dp_series[]']").forEach(checkbox => {
+      checkbox.addEventListener('change', updateDPDisciplinas);
+    });
+    
+    // Exibir campo condicional para nacionalidade
+    const radios = document.getElementsByName('nacionalidade');
+    const campoNacionalidade = document.getElementById('campoNacionalidade');
+    const labelNacionalidade = document.getElementById('labelNacionalidade');
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          campoNacionalidade.style.display = 'block';
+          labelNacionalidade.textContent = radio.value === 'Brasileiro' ? 'Estado de origem:' : 'País de origem:';
+        }
+      });
+    });
+    
+    // Toggle para exibir mensagem de Educação Física
+    function toggleEducacaoFisica(show) {
+      const mensagem = document.getElementById('mensagem_fisica');
+      if (show) {
+        mensagem.classList.remove('hidden');
+      } else {
+        mensagem.classList.add('hidden');
+      }
+    }
+    
+    // Preencher automaticamente a data do registro com data atual
+    window.onload = function() {
+      toggleItinerario(document.querySelector("select[name='serie_requerida']").value);
+      const hoje = new Date();
+      const dataFormatada = hoje.toLocaleDateString('pt-BR');
+      document.getElementById('data_registro').value = dataFormatada;
+    }
+  </script>
+</body>
+</html>
